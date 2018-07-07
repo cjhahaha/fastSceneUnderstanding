@@ -1,0 +1,3 @@
+/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/CMakeFiles/edit_cache.dir
+/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/CMakeFiles/rebuild_cache.dir
+/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/CMakeFiles/label.dir

@@ -6,19 +6,20 @@ local optnet = require 'optnet'
 local tools = require 'tools/tools'
 local cluster = require 'tools/clustering'
 
+-- global variables
+local im
+local outp, out_segm, out_depth, out_instances, labels_segm, labels_inst
+local im_path, input_path, output_path
+
+
 -- load model
 local model = torch.load('./models/fastSceneSegmentationFinal.t7')
 model:evaluate()
 model:cuda()
 
 -- optimize model for inference
+optnet.optimizeMemory(model, torch.CudaTensor(1, 3, 600, 1200), {inplace = true, mode = 'inference', removeGradParams = true})
 --optnet.optimizeMemory(model, torch.CudaTensor(1, 3, opts.size / 2, opts.size), {inplace = true, mode = 'inference', removeGradParams = true})
-
-
--- global variables
-local im
-local outp, out_segm, out_depth, out_instances, labels_segm, labels_inst
-local image_path, output_path
 
 
 function load_image()
@@ -60,10 +61,39 @@ function save_image()
 	end
 
 end
+--]]
 
-image_path = '/data8T/aucid/test.jpg'
 output_path = '/data8T/aucid/output/'
+input_path = '/data8T/aucid/guideDogBackend/input_image/image/'
 
+
+image_path = input_path	.. 'img.jpg'
 load_image()
 run()
---save_image()
+
+torch.save(output_path .. 'outdepth.dat', out_depth)
+torch.save(output_path .. 'labels_inst.dat', labels_inst)
+save_image()
+
+
+--[[
+while (true)
+do
+	local success, cur
+	cur = tostring(os.time() - 8)
+	image_path = input_path .. cur .. '.jpg'
+	local _ = io.open(image_path, 'r')
+	if (_)
+	then
+		_:close()
+		print('get' .. cur)
+		--load_image()
+		os.execute('curl -d "time=' .. cur .. '&data={somejsondata:1}" https://www.guidedog.ml/postbin')
+		--run()
+		--print(os.time())
+	else
+		print(cur)
+		os.execute('sleep 0.5')
+	end
+end
+]]--
