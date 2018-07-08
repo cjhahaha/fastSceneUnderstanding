@@ -1,3 +1,4 @@
+print('starting..', os.time())
 require 'nn'
 require 'cunn'
 require 'cudnn'
@@ -14,11 +15,11 @@ local im_path, input_path, output_path
 
 -- load model
 local model = torch.load('./models/fastSceneSegmentationFinal.t7')
-model:evaluate()
+--model:evaluate()
 model:cuda()
 
 -- optimize model for inference
-optnet.optimizeMemory(model, torch.CudaTensor(1, 3, 600, 1200), {inplace = true, mode = 'inference', removeGradParams = true})
+optnet.optimizeMemory(model, torch.CudaTensor(1, 3, 240, 480), {inplace = true, mode = 'inference', removeGradParams = true})
 --optnet.optimizeMemory(model, torch.CudaTensor(1, 3, opts.size / 2, opts.size), {inplace = true, mode = 'inference', removeGradParams = true})
 
 
@@ -55,32 +56,32 @@ function save_image()
 	img[3] = 0.5*tools.to_color(labels_inst, 256)
 	img[4] = tools.to_color(labels_segm, 21)
 
+	local _ = im:size()
 	for i = 1,4 do
-		img[i] = image.scale(img[i]:squeeze(), 2048, 1024, 'simple')
-		image.save(paths.concat(output_path, string.format('output-%d.png', i)), img[i])
+		img[i] = image.scale(img[i]:squeeze(), _[3], _[4], 'simple')
+		image.save(paths.concat(output_path .. 'img/', string.format('output-%d.png', i)), img[i])
 	end
-
 end
---]]
 
-output_path = '/data8T/aucid/guideDogBackend/fastSceneUnderstanding/output/'
+
+function save_tensor()
+	torch.save(output_path .. 'data/outdepth.dat', out_depth[1][1])
+	torch.save(output_path .. 'data/out_instances.dat', out_instances)
+	torch.save(output_path .. 'data/labels_segm.dat', labels_segm[1][1])
+	torch.save(output_path .. 'data/labels_inst.dat', labels_inst[1])
+end
+
+output_path = '/data8T/aucid/guideDogBackend/input_image/output/'
 input_path = '/data8T/aucid/guideDogBackend/input_image/image/'
-
-
 image_path = input_path	.. 'img.jpg'
+
+
+print('\nrunning..', os.time())
 load_image()
 run()
-
-print(out_segm:max(), out_segm:min())
-print(out_instances:max(), out_instances:min())
-print(labels_inst:max(), labels_inst:min())
-print(labels_segm:max(), labels_segm:min())
-
-torch.save(output_path .. 'outdepth.dat', out_depth)
-torch.save(output_path .. 'out_instances.dat', out_instances)
-torch.save(output_path .. 'labels_segm.dat', labels_segm)
-torch.save(output_path .. 'labels_inst.dat', labels_inst)
---save_image()
+print('finished..', os.time())
+save_tensor()
+save_image()
 
 
 --[[

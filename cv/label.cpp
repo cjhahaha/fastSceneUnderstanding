@@ -1,8 +1,8 @@
-/*
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
-*/
+extern "C" {
+	#include <lua.h>
+	#include <lualib.h>
+	#include <lauxlib.h>
+}
 
 #include <cmath>
 #include <vector>
@@ -17,13 +17,16 @@ using namespace cv;
 #define pow2(x) ((x)*(x))
 #define dis(A, B) sqrt(pow2(A.x - B.x) + pow2(A.y - B.y))
 
+#define THRESHOLD 1000
+#define BLUR_AREA Size(30,30)
 
-void label(char * path, char * type, char * ori_path) {
+
+void label(char * input_path, char * type, char * ori_path, char * output_path) {
 	// load
-	Mat im = imread(path, CV_LOAD_IMAGE_GRAYSCALE);
+	Mat im = imread(input_path, CV_LOAD_IMAGE_GRAYSCALE);
 
 	// preparation
-	blur(im, im, Size(30, 30));
+	blur(im, im, BLUR_AREA);
 	threshold(im, im, 0, 255, CV_THRESH_OTSU);
 
 	// find contours
@@ -43,7 +46,7 @@ void label(char * path, char * type, char * ori_path) {
 		RotatedRect rect = minAreaRect(contours[i]);
 		rect.points(P);
 
-		if (dis(P[0], P[1]) * dis(P[1], P[2]) < 1000)
+		if (dis(P[0], P[1]) * dis(P[1], P[2]) < THRESHOLD)
 			continue;
 
 #ifdef DEBUG
@@ -55,39 +58,31 @@ void label(char * path, char * type, char * ori_path) {
 	}
 
 #ifdef DEBUG
-	imwrite(ori_path, ori_im);
+	imwrite(output_path, ori_im);
 #endif
 }
 
-/*
+
 extern "C" int l_label(lua_State * L) {
-	string path = luaL_checkstring(L, 1);
-	//string type = luaL_checkstring(L, 2);
+	string input_path = lua_tostring(L, 1);
+	string type = lua_tostring(L, 2);
+	string ori_path = lua_tostring(L, 3);
+	string output_path = lua_tostring(L, 4);
+	
+	lua_pushstring(L, "gi");
+	
 
 	return 1;
 }
 
 
-static const struct luaL_reg liblabel[] = {
+static luaL_reg liblabel[] = {
 	{ "l_label" , l_label },
 	{ NULL, NULL }
 };
 
-extern "C"
-int luaopen_liblabel(lua_State * L){
-#if LUA_VERSION_NUM >= 502
-	lua_newtable(L);
-	//luaL_newlib(L, liblabel); // 5.2
-	luaL_setfuncs (L, liblabel, 0);
-#else
+
+extern "C" int luaopen_liblabel(lua_State * L){
 	luaL_register(L, "liblabel", liblabel); // lua 5.1
-#endif
-
-	return 0;
-}
-*/
-
-
-int main(int argc, char * argv[]) {
-	label(argv[1], argv[2], argv[3]);
+	return 1;
 }

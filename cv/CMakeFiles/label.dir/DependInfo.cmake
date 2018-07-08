@@ -10,7 +10,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src"
+  "/data8T/aucid/LuaJIT/include/luajit-2.0"
   "/data8T/aucid/anaconda3/include/opencv"
   "/data8T/aucid/anaconda3/include"
   )

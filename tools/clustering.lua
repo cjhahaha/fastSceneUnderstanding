@@ -151,7 +151,8 @@ local cluster =
     local tmp = torch.ByteTensor(h * w):zero()
     local l = 1
     for j = 1, torch.max(instance_map) do
-        if (instance_map:eq(j):sum() > 10) then
+        -- if (instance_map:eq(j):sum() > 10) then
+        if (instance_map:eq(j):sum() > 1000) then
             tmp[instance_map:eq(j)] = l
             l = l + 1
         end

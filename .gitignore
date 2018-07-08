@@ -39,6 +39,8 @@ luac.out
 *.x86_64
 *.hex
 
-
-output
-output2
+# makefile
+cv/CMakeFiles
+cv/Makefile
+cv/cmake_install.cmake
+cv/CMakeCache.txt

@@ -1,7 +1,7 @@
 require 'torch'
 require 'image'
-local cv = require 'cv'
 
+local THRESHOLD = 1000
 local LABLE = {
 	'Unlabeled',
 	'Road',
@@ -24,25 +24,27 @@ local LABLE = {
 	'Motorcycle',
 	'Bicycle'
 }
---
---[[
-local labels = torch.load('./output/out_instances.dat')[1]
-local depth = torch.load('./output/outdepth.dat')[1][1]
+
+local labels = torch.load('/data8T/aucid/guideDogBackend/input_image/output/data/labels_segm.dat')
+local cars = torch.load('/data8T/aucid/guideDogBackend/input_image/output/data/labels_inst.dat')
+local depth = torch.load('/data8T/aucid/guideDogBackend/input_image/output/data/outdepth.dat')
 
 
-for i=13, 20
-do
+function label(cur_lable)
 	local s = depth:clone()
-	local cur_lable = labels[i - 12]
-
-	--cur_lable:apply(function(l) return l == i and 1 or 0 end)
-	_ = torch.nonzero(cur_lable):size()
-
+	local _ = torch.nonzero(cur_lable):size()
 	s:cmul(cur_lable:float())
 
-	if _:size() ~= 0 then --and _[1] > 8000 then
+	if _:size() ~= 0 and _[1] > THRESHOLD then
 		image.save(string.format('./output2/output-%s.png',  LABLE[i]), s)
 		os.execute('./cv/label /data8T/aucid/guideDogBackend/fastSceneUnderstanding/output2/output-' .. LABLE[i] .. '.png ' .. LABLE[i] .. ' /data8T/aucid/guideDogBackend/input_image/image/img1.jpg')
 	end
 end
--]]
+
+
+function label_car()
+
+end
+
+
+
