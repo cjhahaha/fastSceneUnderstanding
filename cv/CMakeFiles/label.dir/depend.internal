@@ -56,3 +56,6 @@ CMakeFiles/label.dir/label.cpp.o
  /data8T/aucid/anaconda3/include/opencv2/xfeatures2d.hpp
  /data8T/aucid/anaconda3/include/opencv2/xfeatures2d/nonfree.hpp
  /data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/label.cpp
+ /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lauxlib.h
+ /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lua.h
+ /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lualib.h

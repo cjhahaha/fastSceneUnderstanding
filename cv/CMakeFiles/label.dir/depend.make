@@ -55,4 +55,7 @@ CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/anaconda3/include/opencv2/videoi
 CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/anaconda3/include/opencv2/xfeatures2d.hpp
 CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/anaconda3/include/opencv2/xfeatures2d/nonfree.hpp
 CMakeFiles/label.dir/label.cpp.o: label.cpp
+CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lauxlib.h
+CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lua.h
+CMakeFiles/label.dir/label.cpp.o: /data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lualib.h
 

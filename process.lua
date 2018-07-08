@@ -1,6 +1,3 @@
-package.cpath = "/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/?.so;;"
-require 'liblabel'
-
 require 'torch'
 require 'image'
 local cv = require 'cv'
@@ -27,34 +24,25 @@ local LABLE = {
 	'Motorcycle',
 	'Bicycle'
 }
-
-local labels = torch.load('./output/labels_inst.dat')[1]
+--
+--[[
+local labels = torch.load('./output/out_instances.dat')[1]
 local depth = torch.load('./output/outdepth.dat')[1][1]
 
 
-local i = 2
-local s = depth:clone()
-local cur_lable = labels:clone()
-
-cur_lable:apply(function(l) return l == i and 1 or 0 end)
-_ = torch.nonzero(cur_lable):size():size()
-
-s:cmul(cur_lable:float())
-
---[[
-for i=2, 20
+for i=13, 20
 do
 	local s = depth:clone()
-	local cur_lable = labels:clone()
+	local cur_lable = labels[i - 12]
 
-	cur_lable:apply(function(l) return l == i and 1 or 0 end)
-	_ = torch.nonzero(cur_lable):size():size()
+	--cur_lable:apply(function(l) return l == i and 1 or 0 end)
+	_ = torch.nonzero(cur_lable):size()
 
 	s:cmul(cur_lable:float())
 
-	if _ ~= 0 then
+	if _:size() ~= 0 then --and _[1] > 8000 then
 		image.save(string.format('./output2/output-%s.png',  LABLE[i]), s)
+		os.execute('./cv/label /data8T/aucid/guideDogBackend/fastSceneUnderstanding/output2/output-' .. LABLE[i] .. '.png ' .. LABLE[i] .. ' /data8T/aucid/guideDogBackend/input_image/image/img1.jpg')
 	end
-
 end
-]]--
+-]]

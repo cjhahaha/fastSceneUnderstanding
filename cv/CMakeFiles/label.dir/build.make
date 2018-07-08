@@ -88,54 +88,54 @@ label_OBJECTS = \
 # External object files for target label
 label_EXTERNAL_OBJECTS =
 
-liblabel.so: CMakeFiles/label.dir/label.cpp.o
-liblabel.so: CMakeFiles/label.dir/build.make
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_xphoto.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_xobjdetect.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_tracking.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_surface_matching.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_structured_light.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_stereo.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_saliency.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_rgbd.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_reg.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_plot.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_optflow.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_line_descriptor.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_fuzzy.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_dpm.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_dnn.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_datasets.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_ccalib.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_bioinspired.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_bgsegm.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_aruco.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_videostab.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_superres.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_stitching.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_photo.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_text.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_face.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_ximgproc.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_xfeatures2d.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_shape.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_video.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_objdetect.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_calib3d.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_features2d.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_ml.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_highgui.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_videoio.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_imgcodecs.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_imgproc.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_flann.so.3.1.0
-liblabel.so: /data8T/aucid/anaconda3/lib/libopencv_core.so.3.1.0
-liblabel.so: CMakeFiles/label.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library liblabel.so"
+label: CMakeFiles/label.dir/label.cpp.o
+label: CMakeFiles/label.dir/build.make
+label: /data8T/aucid/anaconda3/lib/libopencv_xphoto.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_xobjdetect.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_tracking.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_surface_matching.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_structured_light.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_stereo.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_saliency.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_rgbd.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_reg.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_plot.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_optflow.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_line_descriptor.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_fuzzy.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_dpm.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_dnn.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_datasets.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_ccalib.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_bioinspired.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_bgsegm.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_aruco.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_videostab.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_superres.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_stitching.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_photo.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_text.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_face.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_ximgproc.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_xfeatures2d.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_shape.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_video.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_objdetect.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_calib3d.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_features2d.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_ml.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_highgui.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_videoio.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_imgcodecs.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_imgproc.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_flann.so.3.1.0
+label: /data8T/aucid/anaconda3/lib/libopencv_core.so.3.1.0
+label: CMakeFiles/label.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable label"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/label.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/label.dir/build: liblabel.so
+CMakeFiles/label.dir/build: label
 
 .PHONY : CMakeFiles/label.dir/build
 

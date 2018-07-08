@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/label.dir/label.cpp.o"
-  "liblabel.pdb"
-  "liblabel.so"
+  "label.pdb"
+  "label"
 )
 
 # Per-language clean rules from dependency scanning.

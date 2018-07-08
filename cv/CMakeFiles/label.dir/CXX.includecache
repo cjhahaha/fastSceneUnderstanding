@@ -469,6 +469,8 @@ lauxlib.h
 -
 lualib.h
 -
+cmath
+-
 vector
 -
 string
@@ -477,4 +479,24 @@ iostream
 -
 opencv2/opencv.hpp
 -
+
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lauxlib.h
+stddef.h
+-
+stdio.h
+-
+lua.h
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lua.h
+
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lua.h
+stdarg.h
+-
+stddef.h
+-
+luaconf.h
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/luaconf.h
+
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lualib.h
+lua.h
+/data8T/aucid/torch/exe/luajit-rocks/lua-5.1-rc/src/lua.h
 

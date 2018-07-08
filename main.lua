@@ -34,17 +34,17 @@ function run()
 	outp = model:forward(im)
 
 	-- Extract different outputs from network
-	out_segm = outp[1]:float()                                            -- 1 x 20 x h x w
-	out_instances = outp[2]:float()                                       -- 1 x 8 x h x w
-	out_depth = outp[3]:float()                                           -- 1 x 1 x h x w
+	out_segm = outp[1]:float()                                            -- 1 x 20 x h x w , confidence
+	out_instances = outp[2]:float()                                       -- 1 x 8 x h x w  , confidence
+	out_depth = outp[3]:float()                                           -- 1 x 1 x h x w  , depth
 
 	-- Segm: calculate labels
 	local _
 	_, labels_segm = torch.max(out_segm, 2)
-	labels_segm = labels_segm:byte()                                      -- 1 x 1 x h x w
+	labels_segm = labels_segm:byte()                                      -- 1 x 1 x h x w  , catagory index [0, 20]
 
 	-- Cluster instances
-	labels_inst = cluster.cluster(out_instances, labels_segm:eq(15), 1.5) -- 1 x h x w
+	labels_inst = cluster.cluster(out_instances, labels_segm:eq(15), 1.5) -- 1 x h x w      , car
 end
 
 
@@ -63,7 +63,7 @@ function save_image()
 end
 --]]
 
-output_path = '/data8T/aucid/output/'
+output_path = '/data8T/aucid/guideDogBackend/fastSceneUnderstanding/output/'
 input_path = '/data8T/aucid/guideDogBackend/input_image/image/'
 
 
@@ -71,9 +71,16 @@ image_path = input_path	.. 'img.jpg'
 load_image()
 run()
 
+print(out_segm:max(), out_segm:min())
+print(out_instances:max(), out_instances:min())
+print(labels_inst:max(), labels_inst:min())
+print(labels_segm:max(), labels_segm:min())
+
 torch.save(output_path .. 'outdepth.dat', out_depth)
+torch.save(output_path .. 'out_instances.dat', out_instances)
+torch.save(output_path .. 'labels_segm.dat', labels_segm)
 torch.save(output_path .. 'labels_inst.dat', labels_inst)
-save_image()
+--save_image()
 
 
 --[[
