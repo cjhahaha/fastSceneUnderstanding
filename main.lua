@@ -19,7 +19,7 @@ local model = torch.load('./models/fastSceneSegmentationFinal.t7')
 model:cuda()
 
 -- optimize model for inference
-optnet.optimizeMemory(model, torch.CudaTensor(1, 3, 240, 480), {inplace = true, mode = 'inference', removeGradParams = true})
+optnet.optimizeMemory(model, torch.CudaTensor(1, 3, 120, 240), {inplace = true, mode = 'inference', removeGradParams = true})
 --optnet.optimizeMemory(model, torch.CudaTensor(1, 3, opts.size / 2, opts.size), {inplace = true, mode = 'inference', removeGradParams = true})
 
 
@@ -59,7 +59,7 @@ function save_image()
 	local _ = im:size()
 	for i = 1,4 do
 		img[i] = image.scale(img[i]:squeeze(), _[3], _[4], 'simple')
-		image.save(paths.concat(output_path .. 'img/', string.format('output-%d.png', i)), img[i])
+		image.save(paths.concat(output_path .. 'image/', string.format('output-segm-%d.png', i)), img[i])
 	end
 end
 
@@ -71,8 +71,8 @@ function save_tensor()
 	torch.save(output_path .. 'data/labels_inst.dat', labels_inst[1])
 end
 
-output_path = '/data8T/aucid/guideDogBackend/input_image/output/'
-input_path = '/data8T/aucid/guideDogBackend/input_image/image/'
+output_path = '../output/'
+input_path = '../input/image/'
 image_path = input_path	.. 'img.jpg'
 
 

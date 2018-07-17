@@ -40,8 +40,6 @@ luac.out
 *.hex
 
 # makefile
-/cv/CMakeFiles
-/cv/Makefile
-/cv/cmake_install.cmake
-/cv/CMakeCache.txt
-
+/cv/*
+!/cv/liblabel.so
+!/cv/CMakeLists.txt

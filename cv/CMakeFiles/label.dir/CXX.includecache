@@ -491,12 +491,6 @@ opencv2/features2d.hpp
 /data8T/aucid/anaconda3/include/opencv2/xfeatures2d/opencv2/features2d.hpp
 
 /data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/label.cpp
-lua.h
--
-lualib.h
--
-lauxlib.h
--
 cmath
 -
 vector
@@ -506,5 +500,11 @@ string
 iostream
 -
 opencv2/opencv.hpp
+-
+lua.h
+-
+lualib.h
+-
+lauxlib.h
 -
 
