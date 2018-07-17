@@ -1,12 +1,18 @@
+-- package path
 package.cpath = "/data8T/aucid/guideDogBackend/fastSceneUnderstanding/cv/?.so;" .. package.cpath
 
+
+-- require
 require 'cutorch'
 require 'torch'
 require 'image'
 local liblabel = require 'liblabel'
+local rapidjson = require 'rapidjson'
 
+
+-- const var
 local THRESHOLD = 10000
-local LABLE = {
+local LABLE = { -- {{{
 	'Unlabeled',
 	'Road',
 	'Sidewalk',
@@ -27,27 +33,39 @@ local LABLE = {
 	'Train',
 	'Motorcycle',
 	'Bicycle'
-}
-
-local f
+} -- }}}
 
 
-print('loading..')
-local labels = torch.load('../output/data/labels_segm.dat')
-local cars = torch.load('../output/data/labels_inst.dat')
-local depth = torch.load('../output/data/outdepth.dat')
+-- global var
+-- tensors
+local lables -- labels tensor
+local cars   -- cars tensor
+local depth  -- depth tensor
 
+-- path setting
 local output_path = '/data8T/aucid/guideDogBackend/output/'
 local ori_path = '/data8T/aucid/guideDogBackend/output/image/img.jpg'
-local out_im_path = '/data8T/aucid/guideDogBackend/output/image/img.jpg'
-print('loaded!')
+
+-- output file setting
+local n = 0    -- output n
+local str = {} -- output str
+local f        -- ouput file contains image path
 
 
-local n = 0
-local str = {}
+-- load data
+function load_data() -- {{{
+	print('loading..')
+
+	labels = torch.load('../output/data/labels_segm.dat')
+	cars = torch.load('../output/data/labels_inst.dat')
+	depth = torch.load('../output/data/outdepth.dat')
+
+	print('loaded!')
+end -- }}}
 
 
-function processs(cur_lable, type_)
+-- process each label and write image for label.cpp to use
+function processs(cur_lable, type_) -- {{{
 	local s = depth:clone()
 	local _ = torch.nonzero(cur_lable):size()
 	s:cmul(cur_lable:float())
@@ -59,19 +77,21 @@ function processs(cur_lable, type_)
 		str[n] = _ .. ' ' .. type_ .. '\n'
 		n = n + 1
 	end
-end
+end -- }}}
 
 
-function label_car()
+-- label all cars
+function label_car() -- {{{
 	for i=1,cars:max()
 	do
 		local _ = cars:clone():apply(function(x) return x == i and 1 or 0 end)
 		processs(_, string.format("cars-%s", i))
 	end
-end
+end -- }}}
 
 
-function lable_other()
+-- label other objects
+function lable_other() -- {{{
 	for i=1,20
 	do
 		if i ~= 15 then
@@ -79,10 +99,11 @@ function lable_other()
 			processs(_, LABLE[i])
 		end
 	end
-end
+end -- }}}
 
 
-function lua_string_split(str, split_char)
+-- split string with separator
+function lua_string_split(str, split_char) -- {{{
 	local sub_str_tab = {};
 	while (true) do
 		local pos = string.find(str, split_char);
@@ -95,15 +116,12 @@ function lua_string_split(str, split_char)
 		str = string.sub(str, pos + 1, #str);
 	end
 	return sub_str_tab;
-end
+end -- }}}
 
 
-function label_all()
+-- write list.txt
+function write_list() -- {{{
 	f = assert(io.open('list.txt', 'w'))
-
-	label_car()
-	lable_other()
-
 	f:write(n, "\n")
 	f:write(ori_path, "\n")
 	for i=1,n - 1
@@ -112,9 +130,11 @@ function label_all()
 	end
 
 	f:close()
+end -- }}}
 
-	liblabel:l_label()
 
+-- load points from points.txt
+function load_points() -- {{{
 	f = assert(io.open('points.txt'))
 
 	local cur_label, minx, miny, maxx, maxy, s, dis
@@ -131,9 +151,20 @@ function label_all()
 		dis = depth:sub(miny, maxy, minx, maxx):sum() / s
 		print(cur_label, dis)
 	end
+end -- }}}
 
 
-	print(depth:max(), depth:min())
+function label_all()
+	load_data()
+
+	label_car()
+	lable_other()
+
+	write_list()
+
+	liblabel:l_label()
+
+	load_points()
 end
 
 
