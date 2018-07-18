@@ -41,5 +41,7 @@ luac.out
 
 # makefile
 /cv/*
-!/cv/liblabel.so
+!/cv/label.cpp
 !/cv/CMakeLists.txt
+
+*.txt
