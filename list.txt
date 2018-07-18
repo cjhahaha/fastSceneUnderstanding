@@ -1,0 +1,17 @@
+16
+/data8T/aucid/guideDogBackend/output/image/img.jpg
+/data8T/aucid/guideDogBackend/output/image/output-cars-2.png cars-2
+/data8T/aucid/guideDogBackend/output/image/output-cars-3.png cars-3
+/data8T/aucid/guideDogBackend/output/image/output-Road.png Road
+/data8T/aucid/guideDogBackend/output/image/output-Sidewalk.png Sidewalk
+/data8T/aucid/guideDogBackend/output/image/output-Building.png Building
+/data8T/aucid/guideDogBackend/output/image/output-Wall.png Wall
+/data8T/aucid/guideDogBackend/output/image/output-Fence.png Fence
+/data8T/aucid/guideDogBackend/output/image/output-Vegetation.png Vegetation
+/data8T/aucid/guideDogBackend/output/image/output-Terrain.png Terrain
+/data8T/aucid/guideDogBackend/output/image/output-Sky.png Sky
+/data8T/aucid/guideDogBackend/output/image/output-Person.png Person
+/data8T/aucid/guideDogBackend/output/image/output-Rider.png Rider
+/data8T/aucid/guideDogBackend/output/image/output-Bus.png Bus
+/data8T/aucid/guideDogBackend/output/image/output-Train.png Train
+/data8T/aucid/guideDogBackend/output/image/output-Motorcycle.png Motorcycle

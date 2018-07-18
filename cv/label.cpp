@@ -123,8 +123,14 @@ extern "C" int l_label(lua_State * L) {
 }
 
 
+extern "C" int l_draw_on_picture(lua_State * L) {
+	return 0;
+}
+
+
 static luaL_reg liblabel[] = {
 	{ "l_label" , l_label },
+	{ "l_draw_on_picture" , l_draw_on_picture },
 	{ NULL, NULL }
 };
 
